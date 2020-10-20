@@ -228,7 +228,7 @@ len(l)
 # you can write to stdout for debugging purposes, e.g.
 # print("this is a debug message")
 
-def solution(A):
+def solution82(A):
     # write your code in Python 3.6
     def find_leader(A):
         if len(A) == 0:
@@ -305,3 +305,100 @@ def solution161(A, B):
         count += 1
         end = B[index]
     return count
+
+# %%
+A = [1,2,3,4,1,1,3]
+K = 4
+
+
+def solution162(K, A):
+    # write your code in Python 3.6
+    n = 0
+
+    idx_start = 0
+    idx_end = 0
+
+    while idx_end < len(A):
+        while sum(A[idx_start:idx_end+1]) < K:
+            idx_end += 1
+            if idx_end >= len(A):
+                return n
+
+        n += 1
+        idx_start = idx_end + 1
+        idx_end = idx_end + 1
+
+    return n
+
+# %%
+A = [3, 1, 2, 4, 3]
+d = [None] * (len(A) - 1)
+
+def solution33(A):
+    # write your code in Python 3.6
+    d = {}
+
+    for idx, _ in enumerate(A):
+        x = abs(sum(A[:idx]) - sum(A[idx:]))
+        if x not in d.keys():
+            d[x] = 1
+    return min(d.keys())
+
+
+# %%
+A = [0, 1, 0, 1, 1]
+
+l = []
+for idx1, val1 in enumerate(A):
+    if val1 == 0:
+        for idx2, val2 in enumerate(A):
+            if (val2 == 1) and (idx2 > idx1):
+                l.append((idx1, idx2))
+
+len(l)
+
+# %%
+l
+# %%
+S = "id,name,age,act.,room,dep.\n1,Jack,68,T,13,8\n17,Betty,28,F,15,7"
+C = "age"
+
+# %%
+data = S.split('\n')
+
+# %%
+header = data[0]
+value = data[1:]
+
+# %%
+idx = header.split(',').index(C)
+
+
+# %%
+l = [x.split(',')[idx] for x in value]
+
+
+# %%
+max(l)
+
+# %%
+S = "id,name,age,score.\n1,Jack,NULL,12\n17,Betty,28,11"
+
+S = "header,header\nANNUL,ANNULLED\nnull,NILL\nNULL,NULL"
+
+# %%
+data = S.split('\n')
+
+# %%
+header = data[0]
+values = data[1:]
+
+# %%
+l = [item + '\n' for item in values if 'NULL' not in item.split(',')]
+
+
+# %%
+(header + '\n' + ''.join(l2))[:-1]
+# %%
+header
+# %%
